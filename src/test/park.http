@@ -1,0 +1,7 @@
+POST http://localhost:8080/parking
+Content-Type: application/json
+
+{
+  "vehicleReg": "AB12CDE",
+  "vehicleType": 1
+}
