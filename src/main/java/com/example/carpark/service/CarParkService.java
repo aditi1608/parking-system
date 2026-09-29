@@ -26,15 +26,15 @@ public class CarParkService {
         this.chargeCalculator = chargeCalculator;
     }
 
-    public synchronized int availableSpaces() { return capacity - spaces.size(); }
-    public synchronized int occupiedSpaces() { return spaces.size(); }
+    public int availableSpaces() { return capacity - spaces.size(); }
+    public int occupiedSpaces() { return spaces.size(); }
 
     private final Map<String, Integer> vehicleMap = new ConcurrentHashMap<>();
     private final Map<Integer, ParkedVehicle> spaces = new ConcurrentHashMap<>();
 
 
 
-    public synchronized ParkResponse park(String vehicleReg, int vehicleTypeCode) {
+    public ParkResponse park(String vehicleReg, int vehicleTypeCode) {
         String standardVehicleReg = vehicleReg.trim().toUpperCase();
 
         if (vehicleMap.containsKey(standardVehicleReg)) {
@@ -42,7 +42,7 @@ public class CarParkService {
                     "Vehicle " + standardVehicleReg + " is already parked");
         }
 
-        VehicleType type = VehicleType.fromCode(vehicleTypeCode);
+        VehicleType type = VehicleType.validateCode(vehicleTypeCode);
         int spaceNumber = findFirstFreeSpace();
 
         ParkedVehicle vehicle = new ParkedVehicle(
@@ -54,7 +54,7 @@ public class CarParkService {
     }
 
 
-    public synchronized BillResponse bill(String reg) {
+    public BillResponse bill(String reg) {
         String standardVehicleReg = reg.trim().toUpperCase();
 
         Integer spaceNumber = vehicleMap.get(standardVehicleReg);

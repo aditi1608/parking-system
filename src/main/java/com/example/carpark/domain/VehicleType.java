@@ -18,7 +18,7 @@ public enum VehicleType {
     public int getCode() { return code; }
     public double getRatePerMinute() { return ratePerMinute; }
 
-    public static VehicleType fromCode(int code) {
+    public static VehicleType validateCode(int code) {
         return Arrays.stream(values())
                 .filter(t -> t.code == code)
                 .findFirst()
