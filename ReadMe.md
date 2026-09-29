@@ -25,9 +25,9 @@ bash
 
 3. Run the application
 bash
-./mvnw spring-boot:run
+./mvnw spring-boot:run or run the CarparkApplication java class as a Java Application
 
-Application will start on po
+Application will start on port 8084
 
 # API Endpoints
 Method	Endpoint	     Description
@@ -35,7 +35,8 @@ GET	    /parking	     Get available and occupied number of spaces
 POST	/parking	     Park a vehicle in the first available space
 POST	/parking/bill	 Free up a vehicle's space and return its final charge
 
-# I have created .http files to call the endpoints direclty from the project but 
+# easy access to endpoints 
+I have created .http files to call the endpoints direclty from the project but 
 PostMan can be used as well to call the endpoints
 
 
